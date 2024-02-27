@@ -41,36 +41,40 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private UserService userService;
+
     @PostMapping("/signin")
-    public ResponseEntity<Object>authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result) {
+    public ResponseEntity<Object> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result) {
         LOG.info("authenticateUser");
         ResponseEntity<Object> responseErrors = responseErrorValidation.mapValidationService(result);
-        if (!ObjectUtils.isEmpty(responseErrors)){
-            LOG.error("authenticateUser has errors"+responseErrors.getStatusCode().toString());
-            return responseErrors;}
+        if (!ObjectUtils.isEmpty(responseErrors)) {
+            LOG.error("authenticateUser has errors" + responseErrors.getStatusCode().toString());
+            return responseErrors;
+        }
 
-            LOG.info( loginRequest.getUsername()+  loginRequest.getPassword());
+        LOG.info(loginRequest.getUsername() + loginRequest.getPassword());
         //    Authentication authentication = authenticationManager.authenticate(
-            UsernamePasswordAuthenticationToken authenticationToken =     new UsernamePasswordAuthenticationToken(
-                            loginRequest.getUsername(), loginRequest.getPassword());
-            Authentication authentication = authenticationToken;
-            String jwt = SecurityConstants.TOKEN_PREFIX + jwtTokenProvider.getToken(authentication);
-         //   LOG.info("token = "+jwt);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                loginRequest.getUsername(), loginRequest.getPassword());
+        Authentication authentication = authenticationToken;
+        String jwt = SecurityConstants.TOKEN_PREFIX + jwtTokenProvider.getToken(authentication);
+        //   LOG.info("token = "+jwt);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return ResponseEntity.ok(new JWTTokenSuccessResponse(true, jwt));
     }
-        @PostMapping("/signup")
-    public ResponseEntity<Object> registerUser(@Valid @RequestBody SignupRequest signupRequest, BindingResult result){
+
+    @PostMapping("/signup")
+    public ResponseEntity<Object> registerUser(@Valid @RequestBody SignupRequest signupRequest, BindingResult result) {
         ResponseEntity<Object> responseErrors = responseErrorValidation.mapValidationService(result);
-        if (!ObjectUtils.isEmpty(responseErrors)){
-            LOG.info("registerUser method has Errors" );
-            for (ObjectError error:result.getAllErrors()){
-                LOG.error(error.toString()+"/n");
+        if (!ObjectUtils.isEmpty(responseErrors)) {
+            LOG.info("registerUser method has Errors");
+            for (ObjectError error : result.getAllErrors()) {
+                LOG.error(error.toString() + "/n");
             }
             LOG.error(responseErrors.toString());
-                LOG.error(responseErrors.getStatusCode().toString());
+            LOG.error(responseErrors.getStatusCode().toString());
 
-            return responseErrors;}
+            return responseErrors;
+        }
 
         userService.createUser(signupRequest);
         return ResponseEntity.ok(new MessageResponse("User registered successfully"));
