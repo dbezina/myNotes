@@ -1,6 +1,6 @@
 package com.bezina.myNotes.DAO;
 
-import com.bezina.myNotes.Entities.ImageModel;
+import com.bezina.myNotes.entities.ImageModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

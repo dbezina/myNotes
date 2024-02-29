@@ -1,7 +1,7 @@
-package com.bezina.myNotes.Security;
+package com.bezina.myNotes.security;
 
 import com.bezina.myNotes.DAO.UserRepository;
-import com.bezina.myNotes.Entities.User;
+import com.bezina.myNotes.entities.User;
 import io.jsonwebtoken.*;
 
 import org.slf4j.Logger;
@@ -10,12 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import java.security.PublicKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import javax.crypto.SecretKey;
 
 @Component
 public class JWTTokenProvider {
@@ -87,19 +85,19 @@ public class JWTTokenProvider {
       */
 
 // Используйте JwtParserBuilder для создания парсера JWT
-      /*  JwtParser parser = Jwts.parserBuilder()
+       JwtParser parser = Jwts.parser()
                 .setSigningKey(SecurityConstants.SECRET_KEY)
                 .build();
-*/
+
 // Парсим токен с помощью созданного парсера
-      //  Jws<Claims> jws = parser.parseClaimsJws(token);
+        Jws<Claims> jws = parser.parseClaimsJws(token);
 
 // Получаем тело (payload) токена
-     //   Claims claims = jws.getBody();
+        Claims claims = jws.getBody();
 
-    //    String getId = (String) claims.get("id");
-      //  return Long.parseLong(getId);
-        return null;
+        String getId = (String) claims.get("id");
+        return Long.parseLong(getId);
+     //   return null;
     }
 
 }

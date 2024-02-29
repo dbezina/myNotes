@@ -1,4 +1,4 @@
-package com.bezina.myNotes.Security;
+package com.bezina.myNotes.security;
 
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;

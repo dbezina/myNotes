@@ -1,27 +1,23 @@
-package com.bezina.myNotes.web;
+package com.bezina.myNotes.controllers;
 
-import com.bezina.myNotes.Security.JWTTokenProvider;
-import com.bezina.myNotes.Security.SecurityConstants;
-import com.bezina.myNotes.Services.UserService;
+import com.bezina.myNotes.security.JWTTokenProvider;
+import com.bezina.myNotes.security.SecurityConstants;
+import com.bezina.myNotes.services.UserService;
 import com.bezina.myNotes.payload.request.LoginRequest;
 import com.bezina.myNotes.payload.request.SignupRequest;
 import com.bezina.myNotes.payload.response.JWTTokenSuccessResponse;
 import com.bezina.myNotes.payload.response.MessageResponse;
 import com.bezina.myNotes.validators.ResponseErrorValidation;
-import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -32,7 +28,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/auth")
 @PreAuthorize("permitAll()")
 public class AuthController {
-    Logger LOG = LoggerFactory.getLogger(AuthController.class);
+    public static final Logger LOG = LoggerFactory.getLogger(AuthController.class);
     @Autowired
     private ResponseErrorValidation responseErrorValidation;
     @Autowired

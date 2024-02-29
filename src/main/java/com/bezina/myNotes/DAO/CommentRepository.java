@@ -1,6 +1,6 @@
 package com.bezina.myNotes.DAO;
 
-import com.bezina.myNotes.Entities.Comment;
+import com.bezina.myNotes.entities.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CommentRepository extends JpaRepository<Comment, Long>{

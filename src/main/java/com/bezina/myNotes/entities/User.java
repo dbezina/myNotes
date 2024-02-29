@@ -1,9 +1,8 @@
-package com.bezina.myNotes.Entities;
+package com.bezina.myNotes.entities;
 
-import com.bezina.myNotes.Entities.enums.ERole;
+import com.bezina.myNotes.entities.enums.ERole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;

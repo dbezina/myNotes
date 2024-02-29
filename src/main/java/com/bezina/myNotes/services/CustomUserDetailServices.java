@@ -1,7 +1,7 @@
-package com.bezina.myNotes.Services;
+package com.bezina.myNotes.services;
 
 import com.bezina.myNotes.DAO.UserRepository;
-import com.bezina.myNotes.Entities.User;
+import com.bezina.myNotes.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

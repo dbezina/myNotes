@@ -1,4 +1,4 @@
-package com.bezina.myNotes.Entities.enums;
+package com.bezina.myNotes.entities.enums;
 
 public enum ERole {
     ROLE_USER,

@@ -1,4 +1,4 @@
-package com.bezina.myNotes.Security;
+package com.bezina.myNotes.security;
 
 import com.bezina.myNotes.payload.response.InvalidLoginResponse;
 import com.google.gson.Gson;
